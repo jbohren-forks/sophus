@@ -17,8 +17,9 @@ IF (CMAKE_COMPILER_IS_GNUCXX )
                    -Wno-unused-but-set-variable -Wno-unknown-pragmas ")
 ENDIF()
 
-
-SET (INCLUDE_DIRS "../eigen3.1/")
+FIND_PACKAGE(Eigen REQUIRED)
+SET(INCLUDE_DIRS ${EIGEN_INCLUDE_DIRS})
+ADD_DEFINITIONS(${EIGEN_DEFINITIONS})
 
 SET (SOURCE_DIR "sophus")
 SET (CLASSES  so2
