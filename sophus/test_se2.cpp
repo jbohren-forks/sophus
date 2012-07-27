@@ -2,8 +2,8 @@
 #include <vector>
 
 #include <unsupported/Eigen/MatrixFunctions>
-#include <sophus/se2.h>
-#include <sophus/so3.h>
+#include "se2.h"
+#include "so3.h"
 
 using namespace Sophus;
 using namespace std;

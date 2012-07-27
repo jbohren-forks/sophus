@@ -24,10 +24,10 @@ IF (CMAKE_COMPILER_IS_GNUCXX )
 ENDIF()
 
 FIND_PACKAGE(Eigen REQUIRED)
-INCLUDE_DIRECTORIES(${EIGEN_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/include)
+INCLUDE_DIRECTORIES(${EIGEN_INCLUDE_DIRS})
 ADD_DEFINITIONS(${EIGEN_DEFINITIONS})
 
-SET (SOURCE_DIR "src")
+SET (SOURCE_DIR "sophus")
 SET (CLASSES  so2
               se2
               se3
@@ -46,12 +46,12 @@ LINK_LIBRARIES (${PROJECT_NAME} ${LIBS})
 
 ADD_LIBRARY(${PROJECT_NAME} SHARED ${SOURCES})
 
-ADD_EXECUTABLE(test_so2 src/test_so2.cpp)
-ADD_EXECUTABLE(test_se2 src/test_se2.cpp)
-ADD_EXECUTABLE(test_so3 src/test_so3.cpp)
-ADD_EXECUTABLE(test_scso3 src/test_scso3.cpp)
-ADD_EXECUTABLE(test_se3 src/test_se3.cpp)
-ADD_EXECUTABLE(test_sim3 src/test_sim3.cpp)
+ADD_EXECUTABLE(test_so2 sophus/test_so2.cpp)
+ADD_EXECUTABLE(test_se2 sophus/test_se2.cpp)
+ADD_EXECUTABLE(test_so3 sophus/test_so3.cpp)
+ADD_EXECUTABLE(test_scso3 sophus/test_scso3.cpp)
+ADD_EXECUTABLE(test_se3 sophus/test_se3.cpp)
+ADD_EXECUTABLE(test_sim3 sophus/test_sim3.cpp)
 ENABLE_TESTING()
 
 ADD_TEST(test_so2 test_so2)

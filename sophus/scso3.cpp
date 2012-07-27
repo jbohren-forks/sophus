@@ -21,7 +21,7 @@
 // IN THE SOFTWARE.
 
 #include <iostream>
-#include <sophus/scso3.h>
+#include "scso3.h"
 
 namespace Sophus
 {
