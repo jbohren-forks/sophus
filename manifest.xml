@@ -1,0 +1,20 @@
+<package>
+  <description brief="sophus">
+
+     sophus
+
+  </description>
+  <author>Hauke Strasdat</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/sophus</url>
+
+  <export>
+    <cpp
+      cflags="`pkg-config --cflags eigen3` -I${prefix}/include" 
+      lflags="-Wl,-rpath,${prefix}/lib -L${prefix}/lib -lSophus"/>
+  </export>
+
+</package>
+
+
