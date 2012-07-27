@@ -21,7 +21,7 @@
 // IN THE SOFTWARE.
 
 #include <iostream>
-#include "so3.h"
+#include <sophus/so3.h>
 
 //ToDo: Think completely through when to normalize Quaternion
 

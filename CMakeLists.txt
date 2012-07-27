@@ -3,6 +3,12 @@ SET(PROJECT_NAME Sophus)
 PROJECT(${PROJECT_NAME})
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
 
+#set the default path for built executables to the "bin" directory
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+#set the default path for built libraries to the "lib" directory
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+
+
 SET (CMAKE_VERBOSE_MAKEFILE ON)
 
 IF( NOT CMAKE_BUILD_TYPE )
@@ -18,10 +24,10 @@ IF (CMAKE_COMPILER_IS_GNUCXX )
 ENDIF()
 
 FIND_PACKAGE(Eigen REQUIRED)
-SET(INCLUDE_DIRS ${EIGEN_INCLUDE_DIRS})
+INCLUDE_DIRECTORIES(${EIGEN_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR}/include)
 ADD_DEFINITIONS(${EIGEN_DEFINITIONS})
 
-SET (SOURCE_DIR "sophus")
+SET (SOURCE_DIR "src")
 SET (CLASSES  so2
               se2
               se3
@@ -33,20 +39,19 @@ SET (CLASSES  so2
 SET (SOURCES)
 
 FOREACH(class ${CLASSES})
-  LIST(APPEND SOURCES ${SOURCE_DIR}/${class}.cpp ${SOURCE_DIR}/${class}.h)
+  LIST(APPEND SOURCES ${SOURCE_DIR}/${class}.cpp)
 ENDFOREACH(class)
 
 LINK_LIBRARIES (${PROJECT_NAME} ${LIBS})
 
-INCLUDE_DIRECTORIES(${INCLUDE_DIRS})
 ADD_LIBRARY(${PROJECT_NAME} SHARED ${SOURCES})
 
-ADD_EXECUTABLE(test_so2 sophus/test_so2.cpp)
-ADD_EXECUTABLE(test_se2 sophus/test_se2.cpp)
-ADD_EXECUTABLE(test_so3 sophus/test_so3.cpp)
-ADD_EXECUTABLE(test_scso3 sophus/test_scso3.cpp)
-ADD_EXECUTABLE(test_se3 sophus/test_se3.cpp)
-ADD_EXECUTABLE(test_sim3 sophus/test_sim3.cpp)
+ADD_EXECUTABLE(test_so2 src/test_so2.cpp)
+ADD_EXECUTABLE(test_se2 src/test_se2.cpp)
+ADD_EXECUTABLE(test_so3 src/test_so3.cpp)
+ADD_EXECUTABLE(test_scso3 src/test_scso3.cpp)
+ADD_EXECUTABLE(test_se3 src/test_se3.cpp)
+ADD_EXECUTABLE(test_sim3 src/test_sim3.cpp)
 ENABLE_TESTING()
 
 ADD_TEST(test_so2 test_so2)

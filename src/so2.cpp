@@ -21,8 +21,8 @@
 // IN THE SOFTWARE.
 
 #include <iostream>
-#include "so2.h"
-#include "so3.h"
+#include <sophus/so2.h>
+#include <sophus/so3.h>
 
 namespace Sophus
 {

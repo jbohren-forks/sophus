@@ -2,7 +2,7 @@
 #include <vector>
 
 #include <unsupported/Eigen/MatrixFunctions>
-#include "scso3.h"
+#include <sophus/scso3.h>
 
 using namespace Sophus;
 using namespace std;
