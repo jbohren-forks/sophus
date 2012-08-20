@@ -92,6 +92,10 @@ public:
   logAndTheta                (const SO3 & so3,
                               double * theta);
 
+  static Vector3d
+  logAndThetaShortest        (const SO3 & so3,
+                              double * theta);
+
   static Matrix3d
   hat                        (const Vector3d & omega);
 

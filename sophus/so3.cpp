@@ -168,6 +168,57 @@ Vector3d SO3
     return two_atan_nbyw_by_n * other.unit_quaternion_.vec();
 }
 
+Vector3d SO3
+::logAndThetaShortest(const SO3 & other, double * theta)
+{
+
+    double n = other.unit_quaternion_.vec().norm();
+    double w = other.unit_quaternion_.w();
+    double squared_w = w*w;
+
+    double two_atan_nbyw_by_n;
+    // Atan-based log thanks to
+    //
+    // C. Hertzberg et al.:
+    // "Integrating Generic Sensor Fusion Algorithms with Sound State
+    // Representation through Encapsulation of Manifolds"
+    // Information Fusion, 2011
+
+    if (n < SMALL_EPS)
+    {
+      // If quaternion is normalized and n=1, then w should be 1;
+      // w=0 should never happen here!
+      assert(fabs(w)>SMALL_EPS);
+
+      two_atan_nbyw_by_n = 2./w - 2.*(n*n)/(w*squared_w);
+    }
+    else
+    {
+      if (fabs(w)<SMALL_EPS)
+      {
+        if (w>0)
+        {
+          two_atan_nbyw_by_n = M_PI/n;
+        }
+        else
+        {
+          two_atan_nbyw_by_n = -M_PI/n;
+        }
+      }
+      two_atan_nbyw_by_n = 2*atan2(n,w)/n;
+    }
+
+    *theta = two_atan_nbyw_by_n*n;
+
+    // Flip the rotation vector to go in the shorter direction
+    double flip = 1.0;
+    if(fabs(*theta) > M_PI_2) {
+      flip = -1.0;
+    }
+
+    return flip * two_atan_nbyw_by_n * other.unit_quaternion_.vec();
+}
+
 SO3 SO3
 ::exp(const Vector3d & omega)
 {
