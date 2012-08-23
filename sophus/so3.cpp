@@ -212,7 +212,7 @@ Vector3d SO3
 
     // Flip the rotation vector to go in the shorter direction
     double flip = 1.0;
-    if(fabs(*theta) > M_PI_2) {
+    if(fabs(*theta) >= M_PI) {
       flip = -1.0;
     }
 
