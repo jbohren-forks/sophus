@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <name>Sophus</name>
+  <version>0.1.0</version>
+  <description>
+    C++ implementation of Lie Groups using Eigen.
+  </description>
+
+  <author>Hauke Strasdat</author>
+  <maintainer email="jbo@jhu.edu">Jonathan Bohren</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>eigen</build_depend>
+  <run_depend>eigen</run_depend>
+</package>
